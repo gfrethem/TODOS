@@ -1,0 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Megrim);
+
+body {
+    font-family: megrim, sans-serif;
+}
+button {
+    float: right;
+}
+.main-view {
+    width: 350px;
+}

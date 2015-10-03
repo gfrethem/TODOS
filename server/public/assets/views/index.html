@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="myApp">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Tasks</title>
+    <script src="/vendor/angular/angular.min.js"></script>
+    <script src="/assets/scripts/app.min.js"></script>
+    <link rel="stylesheet" href="/assets/stylesheets/styles.css">
 </head>
 <body>
-WHAT WHAT!?!?
+<div ng-controller="MyController">
+    <h1>{{ testValue }}</h1>
+<div class="main-view">
+    <h3>Red Alerts!</h3>
+    <ul>
+        <li ng-repeat="todo in todos | filter: { category: 'RedAlerts' }">{{ todo.text }}</li>
+    </ul>
+    <h3>Out n' About        <button ng-click="showErrands=!showErrands">Show/Hide</button></h3>
+    <ul ng-show="showErrands">
+        <li ng-repeat="todo in todos | filter: { category: 'Errands' }">{{ todo.text }}</li>
+    </ul>
+    <h3>Around the House    <button ng-click="showChores=!showChores">Show/Hide</button></h3>
+    <ul ng-show="showChores">
+        <li ng-repeat="todo in todos | filter: { category: 'Chores' }">{{ todo.text }}</li>
+    </ul>
+    <h3>Misc    <button ng-click="showMiscs=!showMiscs">Show/Hide</button></h3>
+    <ul ng-show="showMiscs">
+        <li ng-repeat="todo in todos | filter: { category: 'General' }">{{ todo.text }}</li>
+    </ul>
+</div>
+</div>
 </body>
 </html>

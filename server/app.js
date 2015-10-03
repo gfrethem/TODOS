@@ -2,9 +2,10 @@
  * Created by gfrethem on 10/2/15.
  */
 var express = require('express');
+var path = require('path');
 var app = express();
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', function(request, response) {
     response.sendFile(__dirname + "/public/assets/views/index.html");
