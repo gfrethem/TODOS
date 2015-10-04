@@ -22,7 +22,10 @@ module.exports = function (grunt) {
                     "angular/angular.min.js",
                     "angular/angular.min.js.map",
                     "underscore/underscore-min.js",
-                    "underscore/underscore-min.map"
+                    "underscore/underscore-min.map",
+                    "font-awesome-4.4.0/css/font-awesome.min.css",
+                    "font-awesome-4.4.0/fonts/*.*"
+
                 ],
                 "dest": "server/public/vendor/"
             }

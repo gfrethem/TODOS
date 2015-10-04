@@ -6,84 +6,119 @@
     <script src="/vendor/angular/angular.min.js"></script>
     <script src="/vendor/underscore/underscore-min.js"></script>
     <script src="/assets/scripts/app.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome-4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/stylesheets/styles.css">
 </head>
 <body>
-<div ng-controller="MyController">
 
-    <h1>{{ testValue }}</h1>
+<main ng-controller="MyController">
 
+<!-- Create main-view Div and display "title" -->
     <div class="main-view">
-        <h3>Red Alerts!
-            <i class="fa fa-plus-square" ng-click="showAddRedAlert=!showAddRedAlert"></i>
-        </h3>
-        <ul>
-            <li ng-repeat="todo in todos | filter: { category: 'RedAlerts' }">
-                <input type="checkbox" ng-model="todo.done">
-                <span class="done-{{todo.done}}">{{ todo.text }}</span>
-            </li>
-            <li>
-                <form ng-show="showAddRedAlert">
-                    <input size="40" class="addInputRed" placeholder="THIS SHOULDA BEEN DONE YESTERDAY..." type="text"
-                           ng-model="formAddText">
-                    <i class="fa fa-plus-square" ng-click="addToDo('RedAlerts')"></i>
-                </form>
-            </li>
-        </ul>
-        <h3>Out n' About
-            <i class="fa fa-plus-square" ng-click="showAddErrands=!showAddErrands"></i>
-            <i class="fa fa-arrows-v" ng-click="showErrands=!showErrands"></i>
-        </h3>
-        <ul ng-show="showErrands">
-            <li ng-repeat="todo in todos | filter: { category: 'Errands' }">
-                <input type="checkbox" ng-model="todo.done">
-                <span class="done-{{todo.done}}">{{ todo.text }}</span>
-            </li>
-            <li>
-                <form ng-show="showAddErrands">
-                    <input size="40" placeholder="Don't forget to pick up some..." type="text"
-                           ng-model="formAddText">
-                    <i class="fa fa-plus-square" ng-click="addToDo('Errands')"></i>
-                </form>
-            </li>
-        </ul>
-        <h3>Around the House
-            <i class="fa fa-plus-square" ng-click="showAddChores=!showAddChores"></i>
-            <i class="fa fa-arrows-v" ng-click="showChores=!showChores"></i>
-        </h3>
-        <ul ng-show="showChores">
-            <li ng-repeat="todo in todos | filter: { category: 'Chores' }">
-                <input type="checkbox" ng-model="todo.done">
-                <span class="done-{{todo.done}}">{{ todo.text }}</span>
-            </li>
-            <li>
-                <form ng-show="showAddChores">
-                    <input size="40" placeholder="Next time you're bored at home..." type="text"
-                           ng-model="formAddText">
-                    <i class="fa fa-plus-square" ng-click="addToDo('Chores')"></i>
-                </form>
-            </li>
-        </ul>
-        <h3>Misc
-            <i class="fa fa-plus-square" ng-click="showAddMiscs=!showAddMiscs"></i>
-            <i class="fa fa-arrows-v" ng-click="showMiscs=!showMiscs"></i>
-        </h3>
-        <ul ng-show="showMiscs">
-            <li ng-repeat="todo in todos | filter: { category: 'General' }">
-                <input type="checkbox" ng-model="todo.done">
-                <span class="done-{{todo.done}}">{{ todo.text }}</span>
-            </li>
-            <li>
-                <form ng-show="showAddMiscs">
-                    <input size="40" placeholder="Oh yeah, one more thing..." type="text"
-                           ng-model="formAddText">
-                    <i class="fa fa-plus-square" ng-click="addToDo('General')"></i>
-                </form>
-            </li>
-        </ul>
+        <h1>{{ testValue }}</h1>
+
+        <!-- Create Div for First Category Name -->
+        <div class="todoCategory">
+            <h3>Red Alerts!
+                <!-- Button to Show/Hide Add Task -->
+                <i class="fa fa-plus-square" ng-click="showAddRedAlert=!showAddRedAlert"></i>
+            </h3>
+        </div>
+
+        <!-- Create Div for Tasks -->
+        <div class="todoTasks">
+            <ul>
+                <!-- Iterate over $scope.todos and display matches for category -->
+                <li ng-repeat="todo in todos | filter: { category: 'RedAlerts' }">
+                    <!-- Checkbox and logic for strike-through on task completion -->
+                    <input type="checkbox" ng-model="todo.done">
+                    <span class="done-{{todo.done}}">{{ todo.text }}</span>
+                </li>
+                <li>
+                    <!-- Initially Hidden Add Task Input -->
+                    <form ng-show="showAddRedAlert">
+                        <input size="40" class="addInputRed" placeholder="THIS SHOULDA BEEN DONE YESTERDAY..."
+                               type="text" ng-model="formAddText">
+                        <!-- Function to Add Task passes Category as a parameter -->
+                        <i class="fa fa-plus-square" ng-click="addToDo('RedAlerts')"></i>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div class="todoCategory">
+            <h3>Out n' About
+                <i class="fa fa-plus-square" ng-click="showAddErrands=!showAddErrands"></i>
+                <i class="fa fa-arrows-v" ng-click="showErrands=!showErrands"></i>
+            </h3>
+        </div>
+
+        <div class="todoTasks">
+            <ul ng-show="showErrands">
+                <li ng-repeat="todo in todos | filter: { category: 'Errands' }">
+                    <input type="checkbox" ng-model="todo.done">
+                    <span class="done-{{todo.done}}">{{ todo.text }}</span>
+                </li>
+                <li>
+                    <form ng-show="showAddErrands">
+                        <input size="40" placeholder="Don't forget to pick up some..." type="text"
+                               ng-model="formAddText">
+                        <i class="fa fa-plus-square" ng-click="addToDo('Errands')"></i>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div class="todoCategory">
+            <h3>Around the House
+                <i class="fa fa-plus-square" ng-click="showAddChores=!showAddChores"></i>
+                <i class="fa fa-arrows-v" ng-click="showChores=!showChores"></i>
+            </h3>
+        </div>
+
+        <div class="todoTasks">
+            <ul ng-show="showChores">
+                <li ng-repeat="todo in todos | filter: { category: 'Chores' }">
+                    <input type="checkbox" ng-model="todo.done">
+                    <span class="done-{{todo.done}}">{{ todo.text }}</span>
+                </li>
+                <li>
+                    <form ng-show="showAddChores">
+                        <input size="40" placeholder="Next time you're bored at home..." type="text"
+                               ng-model="formAddText">
+                        <i class="fa fa-plus-square" ng-click="addToDo('Chores')"></i>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div class="todoCategory">
+            <h3>Misc
+                <i class="fa fa-plus-square" ng-click="showAddMiscs=!showAddMiscs"></i>
+                <i class="fa fa-arrows-v" ng-click="showMiscs=!showMiscs"></i>
+            </h3>
+        </div>
+
+        <div class="todoTasks">
+            <ul ng-show="showMiscs">
+                <li ng-repeat="todo in todos | filter: { category: 'General' }">
+                    <input type="checkbox" ng-model="todo.done">
+                    <span class="done-{{todo.done}}">{{ todo.text }}</span>
+                </li>
+                <li>
+                    <form ng-show="showAddMiscs">
+                        <input size="40" placeholder="Oh yeah, one more thing..." type="text"
+                               ng-model="formAddText">
+                        <i class="fa fa-plus-square" ng-click="addToDo('General')"></i>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Function to clear "Checked" tasks -->
         <h2 ng-click="clearCompleted()">I've done some!</h2>
+
     </div>
-</div>
+</main>
 </body>
 </html>
