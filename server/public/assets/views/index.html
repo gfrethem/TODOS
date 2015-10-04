@@ -4,30 +4,86 @@
     <meta charset="UTF-8">
     <title>Tasks</title>
     <script src="/vendor/angular/angular.min.js"></script>
+    <script src="/vendor/underscore/underscore-min.js"></script>
     <script src="/assets/scripts/app.min.js"></script>
     <link rel="stylesheet" href="/assets/stylesheets/styles.css">
 </head>
 <body>
 <div ng-controller="MyController">
     <h1>{{ testValue }}</h1>
-<div class="main-view">
-    <h3>Red Alerts!</h3>
-    <ul>
-        <li ng-repeat="todo in todos | filter: { category: 'RedAlerts' }">{{ todo.text }}</li>
-    </ul>
-    <h3>Out n' About        <button ng-click="showErrands=!showErrands">Show/Hide</button></h3>
-    <ul ng-show="showErrands">
-        <li ng-repeat="todo in todos | filter: { category: 'Errands' }">{{ todo.text }}</li>
-    </ul>
-    <h3>Around the House    <button ng-click="showChores=!showChores">Show/Hide</button></h3>
-    <ul ng-show="showChores">
-        <li ng-repeat="todo in todos | filter: { category: 'Chores' }">{{ todo.text }}</li>
-    </ul>
-    <h3>Misc    <button ng-click="showMiscs=!showMiscs">Show/Hide</button></h3>
-    <ul ng-show="showMiscs">
-        <li ng-repeat="todo in todos | filter: { category: 'General' }">{{ todo.text }}</li>
-    </ul>
-</div>
+
+    <div class="main-view">
+        <h3>Red Alerts!
+            <img height="20" width="20" src="/assets/images/plus.png" ng-click="showAddRedAlert=!showAddRedAlert">
+            </img></h3>
+        <ul>
+            <li ng-repeat="todo in todos | filter: { category: 'RedAlerts' }">
+                <input type="checkbox" ng-model="todo.done">
+                <span class="done-{{todo.done}}">{{ todo.text }}
+                </span>
+            </li>
+            <li>
+                <form ng-show="showAddRedAlert">
+                    <input size="40" class="addInputRed" placeholder="THIS SHOULDA BEEN DONE YESTERDAY..." type="text"
+                           ng-model="formAddText">
+                    <img height="20" width="20" src="/assets/images/plus.png" ng-click="addToDo('RedAlerts')">
+                    </img>
+                </form>
+            </li>
+        </ul>
+        <h3>Out n' About
+            <img height="15" width="15" src="/assets/images/blinds.jpeg" ng-click="showErrands=!showErrands"></img>
+            <img height="20" width="20" src="/assets/images/plus.png" ng-click="showAddErrands=!showAddErrands">
+            </img></h3>
+        <ul ng-show="showErrands">
+            <li ng-repeat="todo in todos | filter: { category: 'Errands' }">
+                <input type="checkbox" ng-model="todo.done"><span class="done-{{todo.done}}">{{ todo.text }}
+            </span></li>
+            <li>
+                <form ng-show="showAddErrands">
+                    <input size="40" placeholder="Don't forget to pick up some..." type="text"
+                           ng-model="formAddText">
+                    <img height="20" width="20" src="/assets/images/plus.png" ng-click="addToDo('Errands')">
+                    </img>
+                </form>
+            </li>
+        </ul>
+        <h3>Around the House
+            <img height="15" width="15" src="/assets/images/blinds.jpeg" ng-click="showChores=!showChores">
+            </img><img height="20" width="20" src="/assets/images/plus.png" ng-click="showAddChores=!showAddChores">
+            </img></h3>
+        <ul ng-show="showChores">
+            <li ng-repeat="todo in todos | filter: { category: 'Chores' }">
+                <input type="checkbox" ng-model="todo.done"><span class="done-{{todo.done}}">{{ todo.text }}
+            </span></li>
+            <li>
+                <form ng-show="showAddChores">
+                    <input size="40" placeholder="Next time you're bored at home..." type="text"
+                           ng-model="formAddText">
+                    <img height="20" width="20" src="/assets/images/plus.png" ng-click="addToDo('Chores')">
+                    </img>
+                </form>
+            </li>
+        </ul>
+        <h3>Misc
+            <img height="15" width="15" src="/assets/images/blinds.jpeg" ng-click="showMiscs=!showMiscs">
+            </img><img height="20" width="20" src="/assets/images/plus.png" ng-click="showAddMiscs=!showAddMiscs">
+            </img></h3>
+        <ul ng-show="showMiscs">
+            <li ng-repeat="todo in todos | filter: { category: 'General' }">
+                <input type="checkbox" ng-model="todo.done"><span class="done-{{todo.done}}">{{ todo.text }}
+            </span></li>
+            <li>
+                <form ng-show="showAddMiscs">
+                    <input size="40" placeholder="Oh yeah, one more thing..." type="text"
+                           ng-model="formAddText">
+                    <img height="20" width="20" src="/assets/images/plus.png" ng-click="addToDo('General')">
+                    </img>
+                </form>
+            </li>
+        </ul>
+        <h2 ng-click="clearCompleted()">I've done some!</h2>
+    </div>
 </div>
 </body>
 </html>

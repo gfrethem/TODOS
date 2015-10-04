@@ -20,7 +20,9 @@ module.exports = function (grunt) {
                 cwd: "node_modules/",
                 src: [
                     "angular/angular.min.js",
-                    "angular/angular.min.js.map"
+                    "angular/angular.min.js.map",
+                    "underscore/underscore-min.js",
+                    "underscore/underscore-min.map"
                 ],
                 "dest": "server/public/vendor/"
             }

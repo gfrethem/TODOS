@@ -3,9 +3,20 @@
 body {
     font-family: megrim, sans-serif;
 }
-button {
+h3 img {
     float: right;
 }
 .main-view {
     width: 350px;
 }
+li {
+    list-style-type: none;
+}
+.done-true {
+    text-decoration: line-through;
+    color: #006600;
+}
+/*form {*/
+    /*display: inline-block;*/
+    /*float: right;*/
+/*}*/

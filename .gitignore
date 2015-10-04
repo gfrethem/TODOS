@@ -1,6 +1,7 @@
 .DS_Store
-.idea
-node_modules
-server/public/vendor
-server/public/scripts
+.idea/
+node_modules/
+server/public/vendor/
+server/public/assets/scripts/
+server/public/assets/images/
 *.log
