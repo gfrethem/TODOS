@@ -1,22 +1,26 @@
 @import url(https://fonts.googleapis.com/css?family=Megrim);
 
 body {
-    font-family: megrim, sans-serif;
-}
-h3 img {
-    float: right;
+    font-family: Megrim, sans-serif;
 }
 .main-view {
     width: 350px;
 }
+h3, h2 {
+    text-align: center;
+}
 li {
     list-style-type: none;
+}
+i {
+    color: #009999;
+    float: right;
+    margin: 4px 4px 0 0;
+}
+form i {
+    float: none;
 }
 .done-true {
     text-decoration: line-through;
     color: #006600;
 }
-/*form {*/
-    /*display: inline-block;*/
-    /*float: right;*/
-/*}*/
