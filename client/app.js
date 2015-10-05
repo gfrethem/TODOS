@@ -23,6 +23,15 @@ app.controller("MyController", ['$scope', function ($scope, $http) {
     $scope.showAddChores = false;
     $scope.showAddMiscs = false;
 
+    // Function to close all Add fields and then re-open desired field
+    $scope.showAdd = function (category) {
+        $scope.showAddRedAlert = false;
+        $scope.showAddErrands = false;
+        $scope.showAddChores = false;
+        $scope.showAddMiscs = false;
+        $scope[category] = true;
+    };
+
     // My function to add tasks. It's passing the category based on which section you add the task from.
     // Also clears out the formAddText fields
     $scope.addToDo = function (todoCat) {
