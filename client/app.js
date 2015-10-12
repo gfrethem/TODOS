@@ -48,9 +48,14 @@ app.controller("MyController", ['$scope', '$http', function ($scope, $http) {
     // Uses UNDERSCORE to filter out finished tasks and returns a new array that contains only the
     // uncompleted tasks
     $scope.clearCompleted = function () {
-        $scope.todos = _.filter($scope.todos, function (todo) {
-            return !todo.done;
-        });
+        //$scope.todos = _.filter($scope.todos, function (todo) {
+        //    return !todo.done;
+        $http.get('/getDone').then(function(response) {
+            if (response.status !== 200) {
+                throw new Error('Failed to remove tasks');
+            }
+            getTasks();
+        })
     };
 
     var getTasks = function() {
@@ -62,6 +67,11 @@ app.controller("MyController", ['$scope', '$http', function ($scope, $http) {
             $scope.todos = response.data;
             return response.data;
         })
+    };
+
+    $scope.addRemoveCheck = function (passedTodo) {
+        console.log(passedTodo);
+        $http.post('/addRemoveCheck', passedTodo);
     };
 
     getTasks();

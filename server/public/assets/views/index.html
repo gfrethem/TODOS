@@ -31,7 +31,7 @@
                 <!-- Iterate over $scope.todos and display matches for category -->
                 <li ng-repeat="todo in todos | filter: { category: 'RedAlerts' }">
                     <!-- Checkbox and logic for strike-through on task completion -->
-                    <input type="checkbox" ng-model="todo.done">
+                    <input type="checkbox" ng-model="todo.done" ng-click="addRemoveCheck(todo)">
                     <span class="done-{{todo.done}}">{{ todo.text }}</span>
                 </li>
                 <li>
@@ -55,8 +55,8 @@
 
         <div class="todoTasks">
             <ul ng-show="showErrands">
-                <li ng-repeat="todo in todos | filter: { category: 'Errands' }">
-                    <input type="checkbox" ng-model="todo.done">
+                <li ng-repeat="todo in todos | filter: { category: 'Errands' } ">
+                    <input type="checkbox" ng-model="todo.done" ng-click="addRemoveCheck(todo)">
                     <span class="done-{{todo.done}}">{{ todo.text }}</span>
                 </li>
                 <li>
@@ -79,7 +79,7 @@
         <div class="todoTasks">
             <ul ng-show="showChores">
                 <li ng-repeat="todo in todos | filter: { category: 'Chores' }">
-                    <input type="checkbox" ng-model="todo.done">
+                    <input type="checkbox" ng-model="todo.done" ng-click="addRemoveCheck(todo)">
                     <span class="done-{{todo.done}}">{{ todo.text }}</span>
                 </li>
                 <li>
@@ -102,7 +102,7 @@
         <div class="todoTasks">
             <ul ng-show="showMiscs">
                 <li ng-repeat="todo in todos | filter: { category: 'General' }">
-                    <input type="checkbox" ng-model="todo.done">
+                    <input type="checkbox" ng-model="todo.done" ng-click="addRemoveCheck(todo)">
                     <span class="done-{{todo.done}}">{{ todo.text }}</span>
                 </li>
                 <li>

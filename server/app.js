@@ -33,11 +33,31 @@ app.post('/add', function(request, response, next) {
     console.log(request.body);
     var newTask = new Task(request.body);
     newTask.save();
+    response.send("ok");
+});
+
+app.post('/addRemoveCheck', function(request, response, next) {
+    console.log(request.body);
+    var receivedData = request.body;
+    Task.findById(receivedData._id, function(err, task) {
+        if (err) throw err;
+        task.done = receivedData.done;
+        task.save(function(err) {
+            if (err) throw err;
+            response.sendStatus(200);
+        })
+    })
 });
 
 app.get('/get', function(request, response, next) {
     Task.find({}, function(err, tasks) {
         response.json(tasks);
+    })
+});
+
+app.get('/getDone', function(request, response, next) {
+    Task.remove({"done" : true}, function(err, tasks) {
+        response.sendStatus(200);
     })
 });
 
